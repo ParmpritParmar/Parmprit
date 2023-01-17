@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class PlayerCharacterSwapper : MonoBehaviour
 {
-    public GameObject ModelUnity;
-    public GameObject ModelScale;
-    public GameObject ModelMannequin;
+    public GameObject ModelPlayer;
+    public GameObject ModelDevil;
 
-    public Avatar AvatarUnity;
-    public Avatar AvatarScale;
-    public Avatar AvatarMannequin;
+    public Avatar AvatarPlayer;
+    public Avatar AvatarDevil;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (ModelUnity.activeInHierarchy)
+            if (ModelPlayer.activeInHierarchy)
             {
-                ModelUnity.SetActive(false);
-                ModelScale.SetActive(true);
+                ModelPlayer.SetActive(false);
+                ModelDevil.SetActive(true);
 
-                other.GetComponent<Animator>().avatar = AvatarScale;
+                other.GetComponent<Animator>().avatar = AvatarDevil;
             }
-            else if (ModelScale.activeInHierarchy)
+            else if (ModelDevil.activeInHierarchy)
             {
-                ModelScale.SetActive(false);
-                ModelMannequin.SetActive(true);
+                ModelDevil.SetActive(false);
+                ModelPlayer.SetActive(true);
 
-                other.GetComponent<Animator>().avatar = AvatarMannequin;
-            }
-            else if (ModelMannequin.activeInHierarchy)
-            {
-                ModelMannequin.SetActive(false);
-                ModelUnity.SetActive(true);
-
-                other.GetComponent<Animator>().avatar = AvatarUnity;
+                other.GetComponent<Animator>().avatar = AvatarPlayer;
             }
         }
     }
